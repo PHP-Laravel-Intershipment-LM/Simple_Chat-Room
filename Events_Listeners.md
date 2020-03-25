@@ -20,7 +20,7 @@ II. **Đăng ký, khởi tạo Events và Listeners**
    Ngoài ra, người dùng còn có thể đăng ký ở phương thức _boot_ của _provider_ này. Cú pháp đăng ký cho mọi event, người dùng chỉ cần chèn code xử lý tương ứng cho từng event ở bên dưới:
 
    ```
-   Event::listen('event.\*', function(\$eventName, array \$data) {
+   Event::listen('event.*', function($eventName, array $data) {
        // Insert code here
    });
    ```

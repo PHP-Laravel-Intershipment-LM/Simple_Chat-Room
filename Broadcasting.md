@@ -33,12 +33,12 @@ Broadcasting được Laravel phát triển để hỗ trợ người dùng xây
    Mở file boostrap.js trong thư mục _resources/assets/js_ bỏ comment các dòng dưới đây, điền pusher app key và cluster vào.
 
    ```
-   import Echo from \laravel-echo';
-   window.Pusher = require(\'pusher-js\');
+   import Echo from laravel-echo';
+   window.Pusher = require('pusher-js');
    window.Echo = new Echo({
-       broadcaster: \'pusher\',
-       key: process.env.MIX\_PUSHER\_APP\_KEY,
-       cluster: process.env.MIX\_PUSHER\_APP\_CLUSTER,
+       broadcaster: 'pusher',
+       key: process.env.MIX_PUSHER_APP_KEY,
+       cluster: process.env.MIX_PUSHER_APP_CLUSTER,
        forceTLS: true
    });
    ```
