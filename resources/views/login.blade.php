@@ -3,6 +3,7 @@
 
 <head>
     <title>Demo Database</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('assets/css/login.css') }}" />
 </head>
 
@@ -11,7 +12,7 @@
     <div class="container">
         <div id="title">Đăng nhập vào hệ thống</div>
 
-        <form id="input" action="" method="POST">
+        <form id="input" action="/login" method="POST">
             <div class="row">
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" class="username" placeholder="Tên đăng nhập" />
