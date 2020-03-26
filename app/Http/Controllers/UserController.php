@@ -35,9 +35,11 @@ class UserController extends Controller
 
         $loginResult = $this->userRepository->login($request->all());
         if ($loginResult) {
-            // Login success. Get user id to session and redirect to home page
-            $nameUser = $this->userRepository->findByField('username', $request->get('username'))[0]['name'];
-            $request->session()->put('nameUser', $nameUser);
+            // Login success. Change property isLogin in table and get user id to session and redirect to home page
+            $user = $this->userRepository->findByField('username', $request->get('username'))[0];
+            $this->userRepository->update(['isOnline' => 1], $user['id']);
+            $request->session()->put('nameUser', $user['name']);
+            $request->session()->put('idUser', $user['id']);
             return redirect('');
         } else {
             // Login failed. Notify and reload page login
