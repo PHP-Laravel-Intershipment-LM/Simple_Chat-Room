@@ -1,0 +1,80 @@
+html,
+body,
+ol,
+ul,
+li {
+    font-size: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    background: linear-gradient(90deg, #f8ff00 0%, #3ad59f 100%);
+    min-height: 100%;
+}
+
+.container {
+    display: inline-flex;
+    position: absolute;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2rem 1rem;
+    width: 35rem;
+    border: 1px solid #AAA;
+    border-radius: 1rem;
+    background: #eeeeee94;
+}
+
+#title {
+    text-transform: capitalize;
+    font-weight: 600;
+    font-size: 1.5rem;
+    padding: 1.5rem 1rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+form .row {
+    display: flex;
+    flex-direction: row;
+    margin: 0.5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.row label {
+    flex-basis: 20%;
+    font-weight: 500;
+}
+
+.row input {
+    flex-basis: 80%;
+    max-width: 22rem;
+    padding: 1rem;
+    border: none;
+    border: 1px solid #888;
+    border-radius: 1rem;
+    font-size: 1rem;
+    outline: none;
+}
+
+.row input[type="submit"] {
+    max-width: 8rem;
+    background: #2b9a62e3;
+    font-weight: 600;
+}
