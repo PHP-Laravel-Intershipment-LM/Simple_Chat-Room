@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Demo Database</title>
+    <title>Simple Chatting - Đăng nhập hệ thống</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('assets/css/login.css') }}" />
 </head>
@@ -12,7 +12,7 @@
     <div class="container">
         <div id="title">Đăng nhập vào hệ thống</div>
         @if (isset($message))
-        <p>{{ $message }}</p>
+        <p style="color: red;">{{ $message }}</p>
         @endif
 
         <form id="input" action="/login" method="POST">
