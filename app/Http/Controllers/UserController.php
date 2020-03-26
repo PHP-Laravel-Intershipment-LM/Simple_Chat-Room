@@ -17,7 +17,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         // Check if user is login or not
-        if ($request->session()->get('idUser', false)) {
+        if ($request->session()->get('nameUser', false)) {
             return redirect('');
         }
         return view('login');
@@ -36,8 +36,8 @@ class UserController extends Controller
         $loginResult = $this->userRepository->login($request->all());
         if ($loginResult) {
             // Login success. Get user id to session and redirect to home page
-            $idUser = $this->userRepository->visible(['id'])->findByField('username', $request->get('username'));
-            $request->session()->put('idUser', $idUser);
+            $nameUser = $this->userRepository->findByField('username', $request->get('username'))[0]['name'];
+            $request->session()->put('nameUser', $nameUser);
             return redirect('');
         } else {
             // Login failed. Notify and reload page login

@@ -17,7 +17,7 @@ class HomeController extends Controller
 
     public function index(Request $request) 
     {
-        $idUser = $request->session()->get('idUser', false);
+        $idUser = $request->session()->get('nameUser', false);
         if (!$idUser) {
             // Redirect to login page
             return redirect('login');
