@@ -8,6 +8,10 @@
 </head>
 
 <body>
+    <div class="logout">
+        <a href="/logout" style="background-image: url('{{ asset('assets/images/back.svg') }}')"></a>
+    </div>
+
     <section class="msger">
         <header class="msger-header">
             <div class="msger-header-title">

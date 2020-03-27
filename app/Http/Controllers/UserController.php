@@ -49,4 +49,22 @@ class UserController extends Controller
             ]);
         }
     }
+
+    public function userLogout(Request $request) {
+        // Get id of current user or break if failed
+        $idUser = $request->session()->get('idUser', false);
+        if (!$idUser) {
+            return false;
+        }
+
+        // Update column isLogin in database
+        $this->userRepository->update(['isOnline' => 0], $idUser);
+
+        // Delete session of this user
+        $request->session()->forget('idUser');
+        $request->session()->forget('nameUser');
+        
+        // Redirect to login page
+        return redirect('/login');
+    }
 }
