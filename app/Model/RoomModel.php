@@ -9,4 +9,6 @@ class RoomModel extends Model
     public $table = 'rooms';
 
     public $fillable = ['id', 'name'];
+
+    public $timestamp = false;
 }
