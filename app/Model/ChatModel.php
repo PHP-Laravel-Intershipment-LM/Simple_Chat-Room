@@ -8,7 +8,5 @@ class ChatModel extends Model
 {
     public $table = 'chats';
 
-    public $fillable = ['id', 'id_active', 'message', 'time'];
-
-    public $timestamps = false;
+    public $fillable = ['id', 'id_active', 'message', 'time', 'created_at', 'updated_at'];
 }

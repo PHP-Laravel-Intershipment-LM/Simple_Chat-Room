@@ -8,7 +8,5 @@ class ActiveModel extends Model
 {
     public $table = 'actives';
 
-    public $fillable = ['id', 'id_room', 'id_user'];
-
-    public $timestamps = false;
+    public $fillable = ['id', 'id_room', 'id_user', 'created_at', 'updated_at'];
 }

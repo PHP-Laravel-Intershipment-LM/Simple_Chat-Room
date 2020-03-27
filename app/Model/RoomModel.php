@@ -8,7 +8,5 @@ class RoomModel extends Model
 {
     public $table = 'rooms';
 
-    public $fillable = ['id', 'name'];
-
-    public $timestamps = false;
+    public $fillable = ['id', 'name', 'created_at', 'updated_at'];
 }

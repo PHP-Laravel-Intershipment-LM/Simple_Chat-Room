@@ -8,7 +8,5 @@ class UserModel extends Model
 {
     public $table = 'users';
 
-    public $fillable = ['id', 'username', 'password', 'isOnline'];
-
-    public $timestamps = false;
+    public $fillable = ['id', 'username', 'password', 'isOnline', 'created_at', 'updated_at'];
 }
