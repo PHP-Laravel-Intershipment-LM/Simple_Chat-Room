@@ -4,7 +4,6 @@
 <head>
     <title>Simple Chatroom</title>
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
-    <script src="{{ asset('assets/js/main.js') }}" type="text/javascript"></script>
 </head>
 
 <body>
@@ -56,9 +55,12 @@
 
         <form class="msger-inputarea">
             <input type="text" class="msger-input" placeholder="Enter your message...">
+            <input type="text" class="msger-name" value="{{ session('nameUser') }}" style="display: none;">
             <button type="submit" class="msger-send-btn">Send</button>
         </form>
     </section>
+
+    <script src="{{ asset('assets/js/main.js') }}" type="text/javascript"></script>
 </body>
 
 </html>
