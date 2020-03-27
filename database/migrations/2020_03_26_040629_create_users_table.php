@@ -19,8 +19,8 @@ class CreateUsersTable extends Migration
             $table->string('password', 255);
             $table->string('name', 50);
             $table->tinyInteger('isOnline')->default(0);
-            $table->timestamp('created_at');
-            $table->timestamp('updated_at');
+            $table->timestamp('created_at')->default('2000-01-01 00:00:00');
+            $table->timestamp('updated_at')->default('2000-01-01 00:00:00');
         });
     }
 

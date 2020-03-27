@@ -17,8 +17,8 @@ class CreateActivesTable extends Migration
             $table->id();
             $table->integer('id_room');
             $table->integer('id_user');
-            $table->timestamp('created_at');
-            $table->timestamp('updated_at');
+            $table->timestamp('created_at')->default('2000-01-01 00:00:00');
+            $table->timestamp('updated_at')->default('2000-01-01 00:00:00');
         });
     }
 

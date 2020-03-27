@@ -17,9 +17,8 @@ class CreateChatsTable extends Migration
             $table->id();
             $table->integer('id_actives')->unique();
             $table->text('message');
-            $table->timestamp('time');
-            $table->timestamp('created_at');
-            $table->timestamp('updated_at');
+            $table->timestamp('created_at')->default('2000-01-01 00:00:00');
+            $table->timestamp('updated_at')->default('2000-01-01 00:00:00');
         });
     }
 
