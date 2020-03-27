@@ -10,5 +10,5 @@ class ChatModel extends Model
 
     public $fillable = ['id', 'id_active', 'message', 'time'];
 
-    public $timestamp = false;
+    public $timestamps = false;
 }

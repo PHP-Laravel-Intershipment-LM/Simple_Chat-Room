@@ -10,5 +10,5 @@ class RoomModel extends Model
 
     public $fillable = ['id', 'name'];
 
-    public $timestamp = false;
+    public $timestamps = false;
 }

@@ -10,5 +10,5 @@ class ActiveModel extends Model
 
     public $fillable = ['id', 'id_room', 'id_user'];
 
-    public $timestamp = false;
+    public $timestamps = false;
 }

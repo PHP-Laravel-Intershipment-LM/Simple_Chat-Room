@@ -10,5 +10,5 @@ class UserModel extends Model
 
     public $fillable = ['id', 'username', 'password', 'isOnline'];
 
-    public $timestamp = false;
+    public $timestamps = false;
 }
