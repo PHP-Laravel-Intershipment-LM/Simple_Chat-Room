@@ -17,6 +17,8 @@ class CreateActivesTable extends Migration
             $table->id();
             $table->integer('id_room');
             $table->integer('id_user');
+            $table->timestamp('created_at');
+            $table->timestamp('updated_at');
         });
     }
 
