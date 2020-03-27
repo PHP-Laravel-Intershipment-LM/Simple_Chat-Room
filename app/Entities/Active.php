@@ -20,6 +20,6 @@ class Active extends Model implements Transformable
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = ['id', 'id_room', 'id_user', 'created_at', 'updated_at'];
 
 }

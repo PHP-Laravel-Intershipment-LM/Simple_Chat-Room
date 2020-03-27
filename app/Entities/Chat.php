@@ -20,6 +20,6 @@ class Chat extends Model implements Transformable
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = ['id', 'id_active', 'message', 'time', 'created_at', 'updated_at'];
 
 }
