@@ -21,7 +21,7 @@ html {
 body {
     display: flex;
     justify-content: center;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     height: 100vh;
     overflow-y: hidden;
@@ -31,7 +31,9 @@ body {
 
 .logout {
     width: 100%;
-    text-align: right;
+    text-align: left;
+    margin-left: 1rem;
+    flex-basis: 5%;
 }
 
 .logout a {
