@@ -1,7 +1,9 @@
 const msgerForm = get(".msger-inputarea");
 const msgerInput = get(".msger-input");
+const msgerId = get(".msger-id");
 const msgerName = get(".msger-name");
 const msgerChat = get(".msger-chat");
+const msgerAvatar = get(".right-msg .msg-img");
 const sideLeft = 'left';
 const sideRight = 'right';
 
@@ -9,19 +11,24 @@ msgerForm.addEventListener("submit", event => {
   event.preventDefault();
 
   const msgText = msgerInput.value;
+  const msgId = msgerId.value;
   const msgName = msgerName.value;
+  const msgAvatar = getComputedStyle(msgerAvatar).getPropertyValue('background-image').split('"').join("'");
   if (!msgText) return;
 
   // Append current message to chat area
-  appendMessage(msgName, null, sideRight, msgText);
+  appendMessage(msgName, msgAvatar, sideRight, msgText);
   msgerInput.value = '';
+
+  // Send message to server
+  sendMessage(msgId, msgText);
 });
 
-function appendMessage(name, img = null, side, text) {
+function appendMessage(name, img, side, text) {
   //   Simple solution for small apps
   const msgHTML = `
     <div class="msg ${side}-msg">
-      <div class="msg-img" style="background-image: url(${img})"></div>
+      <div class="msg-img" style="background-image: ${img}"></div>
 
       <div class="msg-bubble">
         <div class="msg-info">
@@ -35,7 +42,7 @@ function appendMessage(name, img = null, side, text) {
   `;
 
   msgerChat.insertAdjacentHTML("beforeend", msgHTML);
-  msgerChat.scrollTop += 500;
+  msgerChat.scrollTo(0, msgerChat.scrollHeight)
 }
 
 // Utils
@@ -48,4 +55,27 @@ function formatDate(date) {
   const m = "0" + date.getMinutes();
 
   return `${h.slice(-2)}:${m.slice(-2)}`;
+}
+
+function sendMessage(idUser, content) {
+  // Check if the browser supports 'fetch' or not
+  if (!('fetch' in window)) {
+    console.log('Fetch API not found, try including the polyfill');
+    return;
+  }
+
+  // Send request if browser support 'fetch
+  fetch('/chat', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRF-TOKEN': get('meta[name="csrf-token"]').content
+    },
+    body: JSON.stringify({
+      'id': idUser,
+      'content': content
+    })
+  }).catch(function (error) {
+    console.log('Send request failed. Try again!');
+  });
 }

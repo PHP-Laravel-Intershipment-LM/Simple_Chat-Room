@@ -14,8 +14,8 @@ Broadcasting được Laravel phát triển để hỗ trợ người dùng xây
 
    2. **Cài đặt driver (Pusher)**
 
-   Cài đặt gói thư viện pusher thông qua composer bằng lệnh sau composer
-   > require pusher/pusher-php-server \"\~4.0\"
+   Cài đặt gói thư viện pusher thông qua composer bằng lệnh sau
+   > composer require pusher/pusher-php-server \"\~4.0\"
 
    Cài đặt javascript dependencies bằng lệnh 
    > npm install
@@ -47,7 +47,7 @@ Broadcasting được Laravel phát triển để hỗ trợ người dùng xây
 
    Để một event có thể được broadcast, event đó phải implements file **ShouldBroadcast**.
 
-   Trong laravel, mỗi event được tạo bằng artisan command đều tự động implement interface này và được override lại phương thức _broadcastOn_ trả về một channel mà event sẽ được broadcast.
+   Trong laravel, mỗi event được tạo bằng artisan command đều tự động được override lại phương thức _broadcastOn_ trả về một channel mà event sẽ được broadcast.
 
    Trong laravel hỗ trợ 3 channel: Channel (public), PrivateChannel (private), PresenceChannel (private). Trong đó, 2 kênh private yêu cầu người dùng phải xác thực mới có thể truy cập. Ví dụ:
 
@@ -60,4 +60,6 @@ Broadcasting được Laravel phát triển để hỗ trợ người dùng xây
 
    Mặc định, channel sau khi tạo sẽ có tên theo tên event tương ứng. Tuy nhiên, người dùng có thể chỉnh sửa lại tên channel bằng cách override lại phương thức _broadcastAs_. Phương thức này trả về tên mới của channel.
 
-   4. **Authorizing Channels**
+   4. **Trigger broadcast event**
+   
+   Để có thể trigger được một broadcast event hay cũng như một event thông thường. Laravel cung cấp sẵn một help hỗ trợ đó là _event(event_instance)_, phương thức này sẽ gọi đến event mà ta mong muốn. 
