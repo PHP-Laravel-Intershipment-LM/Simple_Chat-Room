@@ -17,6 +17,17 @@ class ChatController extends Controller
 
     public function index(Request $request)
     {
-        return response()->json($request->post());
+        // Check if request is not valid
+        if (!$request->filled('id_active') || !$request->filled('content')) {
+            return response()->json($request->all());
+        }
+
+        // Save content and send it to another user is online
+        $result = $this->chatRepository->create([
+            'id_active'    => $request->input('id_active', 1),
+            'message'       => $request->input('content', null)
+        ]);
+
+        return response()->json($result);
     }
 }

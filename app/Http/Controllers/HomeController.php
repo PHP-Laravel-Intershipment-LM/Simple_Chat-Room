@@ -31,7 +31,7 @@ class HomeController extends Controller
         $chatroom = []; // Chat content in chatroom
         foreach ($rooms as $room) {
             $id_active = $room['id'];
-            $content = $this->chatRepository->findByField('id_actives', $id_active)->toArray();
+            $content = $this->chatRepository->findByField('id_active', $id_active)->toArray();
             array_push($chatroom, [
                 'id_room'   => $room['id_room'],
                 'content'   => $content
