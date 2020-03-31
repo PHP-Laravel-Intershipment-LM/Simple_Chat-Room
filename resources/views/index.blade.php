@@ -57,7 +57,8 @@
         <form class="msger-inputarea">
             <input type="text" class="msger-input" placeholder="Enter your message...">
             <input type="text" class="msger-id" value="{{ session('idUser') }}" style="display: none;">
-            <input type="text" class="msger-name" value="{{ session('nameUser') }}" style="display: none;">
+            <input type="text" class="msger-name" value="{{ session('nameUser') }}" style="display: none;" disable>
+            <input type="text" class="msger-avatar" value="Avatar::create(session('nameUser'))->toBase64()" style="display: none" disable>
             <button type="submit" class="msger-send-btn">Send</button>
         </form>
     </section>

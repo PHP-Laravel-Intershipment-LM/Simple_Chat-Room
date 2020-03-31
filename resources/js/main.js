@@ -3,7 +3,7 @@ const msgerInput = get(".msger-input");
 const msgerId = get(".msger-id");
 const msgerName = get(".msger-name");
 const msgerChat = get(".msger-chat");
-const msgerAvatar = get(".right-msg .msg-img");
+const msgerAvatar = get(".msger-avatar");
 const sideLeft = 'left';
 const sideRight = 'right';
 
@@ -13,7 +13,7 @@ msgerForm.addEventListener("submit", event => {
   const msgText = msgerInput.value;
   const msgId = msgerId.value;
   const msgName = msgerName.value;
-  const msgAvatar = getComputedStyle(msgerAvatar).getPropertyValue('background-image').split('"').join("'");
+  const msgAvatar = msgerAvatar.value;
   if (!msgText) return;
 
   // Append current message to chat area
