@@ -1,19 +1,19 @@
 const msgerForm = get(".msger-inputarea");
 const msgerInput = get(".msger-input");
-const msgerId = get(".msger-id");
 const msgerName = get(".msger-name");
 const msgerChat = get(".msger-chat");
 const msgerAvatar = get(".msger-avatar");
+const msgerRoom = get(".msger-room");
 const sideLeft = 'left';
 const sideRight = 'right';
 
 msgerForm.addEventListener("submit", event => {
   event.preventDefault();
 
-  const msgText = msgerInput.value;
-  const msgId = msgerId.value;
-  const msgName = msgerName.value;
-  const msgAvatar = msgerAvatar.value;
+  let msgText = msgerInput.value;
+  let msgName = msgerName.value;
+  let msgAvatar = msgerAvatar.value;
+  let msgRoom = msgerRoom.value;
   if (!msgText) return;
 
   // Append current message to chat area
@@ -21,7 +21,7 @@ msgerForm.addEventListener("submit", event => {
   msgerInput.value = '';
 
   // Send message to server
-  sendMessage(msgId, msgText);
+  sendMessage(msgRoom, msgText);
 });
 
 function appendMessage(name, img, side, text) {
@@ -57,7 +57,7 @@ function formatDate(date) {
   return `${h.slice(-2)}:${m.slice(-2)}`;
 }
 
-function sendMessage(idUser, content) {
+function sendMessage(idActive, content) {
   // Check if the browser supports 'fetch' or not
   if (!('fetch' in window)) {
     console.log('Fetch API not found, try including the polyfill');
@@ -72,7 +72,7 @@ function sendMessage(idUser, content) {
       'X-CSRF-TOKEN': get('meta[name="csrf-token"]').content
     },
     body: JSON.stringify({
-      'id': idUser,
+      'id_active': idActive,
       'content': content
     })
   }).catch(function (error) {

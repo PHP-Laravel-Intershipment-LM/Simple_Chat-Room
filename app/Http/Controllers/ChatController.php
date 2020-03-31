@@ -3,10 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Repositories\ChatRepository;
 
 class ChatController extends Controller
 {
-    public function index(Request $request) {
+
+    private $chatRepository;
+
+    public function __construct(ChatRepository $chatRepository)
+    {
+        $this->chatRepository = $chatRepository;
+    }
+
+    public function index(Request $request)
+    {
         return response()->json($request->post());
     }
 }

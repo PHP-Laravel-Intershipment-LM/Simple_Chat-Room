@@ -37,6 +37,10 @@ class HomeController extends Controller
                 'content'   => $content
             ]);
         }
+        // Add current id_active to session
+        if (sizeof($chatroom) > 0) {
+            $request->session()->put('idActive', $rooms[0]['id']);
+        }
         // Load home page
         return view('index', ['data' => $chatroom]);
     }
