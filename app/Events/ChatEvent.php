@@ -13,15 +13,18 @@ use Illuminate\Queue\SerializesModels;
 class ChatEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
+    public $name, $avatar, $content; 
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($name, $avatar, $content)
     {
-        //
+        $this->name= $name;
+        $this->avatar = $avatar;
+        $this->content = $content;
     }
 
     /**

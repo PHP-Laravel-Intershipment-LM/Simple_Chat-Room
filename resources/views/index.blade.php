@@ -63,6 +63,7 @@
         </form>
     </section>
 
+    <script src="{{ asset('assets/js/app.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/js/main.js') }}" type="text/javascript"></script>
 </body>
 
