@@ -11,9 +11,12 @@ msgerForm.addEventListener("submit", event => {
   event.preventDefault();
 
   let msgRoom = msgerRoom.value;
+  let msgText = msgerInput.value;
+  let msgAvatar = msgerAvatar.value;
+  if (!msgText) return;
 
   // Send message to server
-  sendMessage(msgRoom, msgText, appendMessage);
+  sendMessage(msgRoom, msgAvatar, msgText, appendMessage);
 });
 
 function appendMessage(name, img, side, text) {
@@ -49,7 +52,7 @@ function formatDate(date) {
   return `${h.slice(-2)}:${m.slice(-2)}`;
 }
 
-function sendMessage(idActive, content, callback) {
+function sendMessage(idActive, avatar, content, callback) {
   // Check if the browser supports 'fetch' or not
   if (!('fetch' in window)) {
     console.log('Fetch API not found, try including the polyfill');
@@ -64,16 +67,14 @@ function sendMessage(idActive, content, callback) {
       'X-CSRF-TOKEN': get('meta[name="csrf-token"]').content
     },
     body: JSON.stringify({
-      'id_active': idActive,
-      'content': content
+      'id_active' : idActive,
+      'avatar'    : avatar,
+      'content'   : content
     })
   }).then(response => {
-    let msgText = msgerInput.value;
     let msgName = msgerName.value;
-    let msgAvatar = msgerAvatar.value;
-    if (!msgText) return;
     msgerInput.value = '';
-    callback(msgName, msgAvatar, sideRight, msgText);
+    callback(msgName, avatar, sideRight, content);
   }).catch(function (error) {
     console.log('Send request failed. Try again!');
   });
