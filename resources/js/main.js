@@ -13,7 +13,7 @@ window.Echo.channel('public-channel')
     .listen('ChatEvent', function (data) {
         // Check if this message was send by current user
         if (data.name !== msgerName.value) {
-            appendMessage(data.name, data.avatar, sideLeft, data.content);
+            appendMessage(data.name, data.avatar, sideLeft, data.content, data.time);
         }
     });
 
@@ -29,7 +29,7 @@ msgerForm.addEventListener("submit", event => {
     sendMessage(msgRoom, msgAvatar, msgText, appendMessage);
 });
 
-function appendMessage(name, img, side, text) {
+function appendMessage(name, img, side, text, time) {
     //   Simple solution for small apps
     const msgHTML = `
         <div class="msg ${side}-msg">
@@ -38,7 +38,7 @@ function appendMessage(name, img, side, text) {
           <div class="msg-bubble">
             <div class="msg-info">
               <div class="msg-info-name">${name}</div>
-              <div class="msg-info-time">${formatDate(new Date())}</div>
+              <div class="msg-info-time">${time}</div>
             </div>
     
             <div class="msg-text">${text}</div>
@@ -84,7 +84,7 @@ function sendMessage(idActive, avatar, content, callback) {
     }).then(response => {
         let msgName = msgerName.value;
         msgerInput.value = '';
-        callback(msgName, avatar, sideRight, content);
+        callback(msgName, avatar, sideRight, content, formatDate(new Date()));
     }).catch(function (error) {
         console.log('Send request failed. Try again!');
     });

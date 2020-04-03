@@ -32,15 +32,22 @@ class ChatController extends Controller
         $id_active = $request->input('id_active', 1);
         $content = $request->input('content', null);
         $avatar = $request->input('avatar', null);
-        $result = $this->chatRepository->create([
+        $time = $this->chatRepository->create([
             'id_active'    => $request->input('id_active', 1),
             'message'       => $request->input('content', null)
-        ]);
+        ])['created_at'];
         // Get name user from id_active
         $idUser = $this->activeRepository->find($id_active)['id_user'];
         $nameUser = $this->userRepository->find($idUser)['name'];
-        event(new ChatEvent($nameUser, $avatar, $content));
+        event(new ChatEvent($nameUser, $avatar, $content, $this->getTimeInDate($time)));
 
         return response()->json(['status' => true]);
+    }
+
+    private function getTimeInDate($date)
+    {
+        $timePattern = '/(\d+:\d+):\d+/';
+        preg_match($timePattern, $date, $times);
+        return $times[1];
     }
 }

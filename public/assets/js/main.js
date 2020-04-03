@@ -1379,7 +1379,7 @@ var sideRight = 'right';
 window.Echo.channel('public-channel').listen('ChatEvent', function (data) {
   // Check if this message was send by current user
   if (data.name !== msgerName.value) {
-    appendMessage(data.name, data.avatar, sideLeft, data.content);
+    appendMessage(data.name, data.avatar, sideLeft, data.content, data.time);
   }
 });
 msgerForm.addEventListener("submit", function (event) {
@@ -1392,9 +1392,9 @@ msgerForm.addEventListener("submit", function (event) {
   sendMessage(msgRoom, msgAvatar, msgText, appendMessage);
 });
 
-function appendMessage(name, img, side, text) {
+function appendMessage(name, img, side, text, time) {
   //   Simple solution for small apps
-  var msgHTML = "\n        <div class=\"msg ".concat(side, "-msg\">\n          <div class=\"msg-img\" style=\"background-image: ").concat(img, "\"></div>\n    \n          <div class=\"msg-bubble\">\n            <div class=\"msg-info\">\n              <div class=\"msg-info-name\">").concat(name, "</div>\n              <div class=\"msg-info-time\">").concat(formatDate(new Date()), "</div>\n            </div>\n    \n            <div class=\"msg-text\">").concat(text, "</div>\n          </div>\n        </div>\n      ");
+  var msgHTML = "\n        <div class=\"msg ".concat(side, "-msg\">\n          <div class=\"msg-img\" style=\"background-image: ").concat(img, "\"></div>\n    \n          <div class=\"msg-bubble\">\n            <div class=\"msg-info\">\n              <div class=\"msg-info-name\">").concat(name, "</div>\n              <div class=\"msg-info-time\">").concat(time, "</div>\n            </div>\n    \n            <div class=\"msg-text\">").concat(text, "</div>\n          </div>\n        </div>\n      ");
   msgerChat.insertAdjacentHTML("beforeend", msgHTML);
   msgerChat.scrollTo(0, msgerChat.scrollHeight);
 } // Utils
@@ -1433,7 +1433,7 @@ function sendMessage(idActive, avatar, content, callback) {
   }).then(function (response) {
     var msgName = msgerName.value;
     msgerInput.value = '';
-    callback(msgName, avatar, sideRight, content);
+    callback(msgName, avatar, sideRight, content, formatDate(new Date()));
   })["catch"](function (error) {
     console.log('Send request failed. Try again!');
   });
