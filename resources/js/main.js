@@ -10,18 +10,11 @@ const sideRight = 'right';
 msgerForm.addEventListener("submit", event => {
   event.preventDefault();
 
-  let msgText = msgerInput.value;
-  let msgName = msgerName.value;
-  let msgAvatar = msgerAvatar.value;
   let msgRoom = msgerRoom.value;
   if (!msgText) return;
 
-  // Append current message to chat area
-  appendMessage(msgName, msgAvatar, sideRight, msgText);
-  msgerInput.value = '';
-
   // Send message to server
-  sendMessage(msgRoom, msgText);
+  sendMessage(msgRoom, msgText, appendMessage);
 });
 
 function appendMessage(name, img, side, text) {
@@ -57,7 +50,7 @@ function formatDate(date) {
   return `${h.slice(-2)}:${m.slice(-2)}`;
 }
 
-function sendMessage(idActive, content) {
+function sendMessage(idActive, content, callback) {
   // Check if the browser supports 'fetch' or not
   if (!('fetch' in window)) {
     console.log('Fetch API not found, try including the polyfill');
@@ -75,6 +68,12 @@ function sendMessage(idActive, content) {
       'id_active': idActive,
       'content': content
     })
+  }).then(response => {
+    let msgText = msgerInput.value;
+    let msgName = msgerName.value;
+    let msgAvatar = msgerAvatar.value;
+    msgerInput.value = '';
+    callback(msgName, msgAvatar, sideRight, msgText);
   }).catch(function (error) {
     console.log('Send request failed. Try again!');
   });
