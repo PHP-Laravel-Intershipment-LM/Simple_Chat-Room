@@ -11,7 +11,10 @@ const sideRight = 'right';
 
 window.Echo.channel('public-channel')
     .listen('ChatEvent', function (data) {
-        appendMessage(data.name, data.avatar, sideLeft, data.content);
+        // Check if this message was send by current user
+        if (data.name !== msgerName.value) {
+            appendMessage(data.name, data.avatar, sideLeft, data.content);
+        }
     });
 
 msgerForm.addEventListener("submit", event => {
