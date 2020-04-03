@@ -11,7 +11,6 @@ msgerForm.addEventListener("submit", event => {
   event.preventDefault();
 
   let msgRoom = msgerRoom.value;
-  if (!msgText) return;
 
   // Send message to server
   sendMessage(msgRoom, msgText, appendMessage);
@@ -72,6 +71,7 @@ function sendMessage(idActive, content, callback) {
     let msgText = msgerInput.value;
     let msgName = msgerName.value;
     let msgAvatar = msgerAvatar.value;
+    if (!msgText) return;
     msgerInput.value = '';
     callback(msgName, msgAvatar, sideRight, msgText);
   }).catch(function (error) {
