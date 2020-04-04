@@ -34,5 +34,26 @@ class ActiveRepositoryEloquent extends BaseRepository implements ActiveRepositor
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
+
+
+    /**
+     * Get list active for the rooms the user participates
+     * 
+     * $return array
+     */
+    public function getActivesOfUser($idUser)
+    {
+        $actives = [];
+        $rooms = $this->findByField('id_user', $idUser); // List room of user
+        foreach ($rooms as $room) {
+            $id_room = $room['id_room'];
+            $active = $this->findByField('id_room', $id_room)->toArray();
+            array_push($actives, [
+                'id_room'   => $id_room,
+                'actives'   => $active
+            ]);
+        }
+        return $actives;
+    }
     
 }
